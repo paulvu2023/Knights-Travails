@@ -111,3 +111,5 @@ function knightMoves(startingSquare, endSquare) {
   }
   return path;
 }
+
+console.log(knightMoves(chessboard[0][0], chessboard[0][1]));
