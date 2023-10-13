@@ -79,33 +79,67 @@ function knightMoves(startingSquare, endSquare) {
   const path = [];
   queue.unshift(startingSquare);
   while (queue.length > 0) {
-    path.push(queue[queue.length - 1]);
-    if (queue[queue.length - 1].coord === endSquare.coord) {
-      break;
-    }
-    if (queue[queue.length - 1].highestLeft) {
-      queue.unshift(queue[queue.length - 1].highestLeft);
-    }
-    if (queue[queue.length - 1].highestRight) {
-      queue.unshift(queue[queue.length - 1].highestRight);
-    }
-    if (queue[queue.length - 1].highLeft) {
-      queue.unshift(queue[queue.length - 1].highLeft);
-    }
-    if (queue[queue.length - 1].highRight) {
-      queue.unshift(queue[queue.length - 1].highRight);
-    }
-    if (queue[queue.length - 1].lowLeft) {
-      queue.unshift(queue[queue.length - 1].lowLeft);
-    }
-    if (queue[queue.length - 1].lowRight) {
-      queue.unshift(queue[queue.length - 1].lowRight);
-    }
-    if (queue[queue.length - 1].lowestLeft) {
-      queue.unshift(queue[queue.length - 1].lowestLeft);
-    }
-    if (queue[queue.length - 1].lowestRight) {
-      queue.unshift(queue[queue.length - 1].lowestRight);
+    if (path.includes(queue[queue.length - 1]) === false) {
+      path.push(queue[queue.length - 1]);
+      if (queue[queue.length - 1].coord === endSquare.coord) {
+        return path;
+      }
+      if (queue[queue.length - 1].highestLeft) {
+        const thisSquare =
+          chessboard[queue[queue.length - 1].highestLeft[0]][
+            queue[queue.length - 1].highestLeft[1]
+          ];
+        queue.unshift(thisSquare);
+      }
+      if (queue[queue.length - 1].highestRight) {
+        const thisSquare =
+          chessboard[queue[queue.length - 1].highestRight[0]][
+            queue[queue.length - 1].highestRight[1]
+          ];
+        queue.unshift(thisSquare);
+      }
+      if (queue[queue.length - 1].highLeft) {
+        const thisSquare =
+          chessboard[queue[queue.length - 1].highLeft[0]][
+            queue[queue.length - 1].highLeft[1]
+          ];
+        queue.unshift(thisSquare);
+      }
+      if (queue[queue.length - 1].highRight) {
+        const thisSquare =
+          chessboard[queue[queue.length - 1].highRight[0]][
+            queue[queue.length - 1].highRight[1]
+          ];
+        queue.unshift(thisSquare);
+      }
+      if (queue[queue.length - 1].lowLeft) {
+        const thisSquare =
+          chessboard[queue[queue.length - 1].lowLeft[0]][
+            queue[queue.length - 1].lowLeft[1]
+          ];
+        queue.unshift(thisSquare);
+      }
+      if (queue[queue.length - 1].lowRight) {
+        const thisSquare =
+          chessboard[queue[queue.length - 1].lowRight[0]][
+            queue[queue.length - 1].lowRight[1]
+          ];
+        queue.unshift(thisSquare);
+      }
+      if (queue[queue.length - 1].lowestLeft) {
+        const thisSquare =
+          chessboard[queue[queue.length - 1].lowestLeft[0]][
+            queue[queue.length - 1].lowestLeft[1]
+          ];
+        queue.unshift(thisSquare);
+      }
+      if (queue[queue.length - 1].lowestRight) {
+        const thisSquare =
+          chessboard[queue[queue.length - 1].lowestRight[0]][
+            queue[queue.length - 1].lowestRight[1]
+          ];
+        queue.unshift(thisSquare);
+      }
     }
     queue.pop();
   }
