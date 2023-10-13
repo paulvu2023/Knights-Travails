@@ -74,4 +74,40 @@ for (let i = 0; i < 8; i++) {
   }
 }
 
-console.log(chessboard);
+function knightMoves(startingSquare, endSquare) {
+  const queue = [];
+  const path = [];
+  queue.unshift(startingSquare);
+  while (queue.length > 0) {
+    path.push(queue[queue.length - 1]);
+    if (queue[queue.length - 1].coord === endSquare.coord) {
+      break;
+    }
+    if (queue[queue.length - 1].highestLeft) {
+      queue.unshift(queue[queue.length - 1].highestLeft);
+    }
+    if (queue[queue.length - 1].highestRight) {
+      queue.unshift(queue[queue.length - 1].highestRight);
+    }
+    if (queue[queue.length - 1].highLeft) {
+      queue.unshift(queue[queue.length - 1].highLeft);
+    }
+    if (queue[queue.length - 1].highRight) {
+      queue.unshift(queue[queue.length - 1].highRight);
+    }
+    if (queue[queue.length - 1].lowLeft) {
+      queue.unshift(queue[queue.length - 1].lowLeft);
+    }
+    if (queue[queue.length - 1].lowRight) {
+      queue.unshift(queue[queue.length - 1].lowRight);
+    }
+    if (queue[queue.length - 1].lowestLeft) {
+      queue.unshift(queue[queue.length - 1].lowestLeft);
+    }
+    if (queue[queue.length - 1].lowestRight) {
+      queue.unshift(queue[queue.length - 1].lowestRight);
+    }
+    queue.pop();
+  }
+  return path;
+}
