@@ -81,6 +81,7 @@ function knightMoves(startingSquare, endSquare) {
   while (queue.length > 0) {
     if (path.includes(queue[queue.length - 1]) === false) {
       path.push(queue[queue.length - 1]);
+
       if (queue[queue.length - 1].coord === endSquare.coord) {
         return path;
       }
@@ -146,4 +147,4 @@ function knightMoves(startingSquare, endSquare) {
   return path;
 }
 
-console.log(knightMoves(chessboard[0][0], chessboard[0][1]));
+console.log(knightMoves(chessboard[0][0], chessboard[2][4]));
