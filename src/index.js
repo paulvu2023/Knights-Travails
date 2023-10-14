@@ -75,7 +75,7 @@ for (let i = 0; i < 8; i++) {
 }
 
 function knightMoves(startingSquare, endSquare) {
-  const queue = [];
+  const queue = []; // Using array as a queue is much slower. Queues have a O(1) time complexity whereas arrays have a O(n) time complexity
   const path = [];
   queue.unshift(startingSquare);
   while (queue.length > 0) {
