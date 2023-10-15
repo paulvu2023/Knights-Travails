@@ -10,7 +10,7 @@ html, body {
 body {
   overflow: hidden;
   display: flex;
-  background: rgb(253, 253, 253);
+  background: rgb(25, 27, 28);
 }
 
 /* Styling for left side */
@@ -26,7 +26,8 @@ body {
 h1 {
   font-weight: 100;
   font-size: calc(30px + 3vw);
-  text-shadow: rgba(109, 196, 247, 0.35) 0px 5px 15px;
+  color: white;
+  text-shadow: rgba(109, 196, 247, 0.45) 0px 5px 15px;
   transition: transform .3s ease;
 }
 
@@ -38,15 +39,16 @@ button {
   width: 200px;
   padding: 5px;
   font-size: 30px;
-  background: white;
-  border: 1px solid black;
+  background: rgb(24,26,27);
+  color: white;
+  border: 1px solid white;
   box-shadow: rgba(109, 196, 247, 0.35) 0px 5px 15px;
   transition: transform .3s ease-in-out;
 }
 
 button:hover {
   transform: scale(1.05);
-  border: 2px solid black;
+  border: 2px solid white;
 }
 
 .right {
@@ -59,7 +61,7 @@ button:hover {
 /* Styling for chessboard */
 .chessboard {
   display: flex;
-  border: 2px solid black;
+  border: 1px solid gray;
   flex-direction: column;
   margin-right: 20px;
   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
@@ -80,17 +82,17 @@ button:hover {
 
 /* Add styling for alternating squares */
 .row:nth-child(even) .square:nth-child(even) {
-  background-color: rgb(208, 230, 250);
+  background-color: rgb(51, 55, 58);
 }
 
 .row:nth-child(even) .square:nth-child(odd) {
-  background-color: #444;
+  background-color: rgb(39, 42, 44);
 }
 
 .row:nth-child(odd) .square:nth-child(even) {
-  background-color: #444;
+  background-color: rgb(39, 42, 44);
 }
 
 .row:nth-child(odd) .square:nth-child(odd) {
-  background-color: rgb(208, 230, 250);
+  background-color: rgb(51, 55, 58);
 }
