@@ -83,7 +83,6 @@ function knightMoves(startingSquare, endSquare) {
 
   while (queue.length > 0) {
     const currentSquare = queue.pop(); // Pop the last square from the queue
-    path.push(currentSquare);
 
     if (currentSquare.coord === endSquare.coord) {
       return path;
