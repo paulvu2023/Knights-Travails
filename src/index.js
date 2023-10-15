@@ -77,15 +77,15 @@ for (let i = 0; i < 8; i++) {
 
 function knightMoves(startingSquare, endSquare) {
   const queue = [];
-  const path = [];
   const visited = new Set();
-  queue.unshift(startingSquare); // Push the starting square to the front
+  queue.push([startingSquare]); // Push the starting square to the back
 
   while (queue.length > 0) {
-    const currentSquare = queue.pop(); // Pop the last square from the queue
+    const currentPath = queue.shift(); // Get the current path
+    const currentSquare = currentPath[currentPath.length - 1]; // Get the current square
 
     if (currentSquare.coord === endSquare.coord) {
-      return path;
+      return currentPath;
     }
 
     if (!visited.has(currentSquare)) {
@@ -105,8 +105,9 @@ function knightMoves(startingSquare, endSquare) {
 
       for (const move of nextMoves) {
         if (move && !visited.has(chessboard[move[0]][move[1]])) {
-          // Check if the square of the possible move has been visited
-          queue.unshift(chessboard[move[0]][move[1]]); // Push new squares to the front of the queue
+          const newPath = [...currentPath]; // Create a new path by copying the current path
+          newPath.push(chessboard[move[0]][move[1]]); // Add the new move into the new path
+          queue.push(newPath); // Add the new path to the queue of paths
         }
       }
     }
