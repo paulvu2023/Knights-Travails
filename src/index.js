@@ -76,69 +76,44 @@ for (let i = 0; i < 8; i++) {
 }
 
 function knightMoves(startingSquare, endSquare) {
-  const queue = []; // Using array as a queue is much slower. Queues have a O(1) time complexity whereas arrays have a O(n) time complexity
+  const queue = [];
   const path = [];
   const visited = new Set();
-  queue.unshift(startingSquare);
-  while (queue.length > 0) {
-    const currentSquare = queue[queue.length - 1];
-    if (!visited.has(currentSquare)) {
-      path.push(currentSquare);
+  queue.unshift(startingSquare); // Push the starting square to the front
 
-      if (currentSquare.coord === endSquare.coord) {
-        return path;
-      }
-      if (currentSquare.highestLeft) {
-        const thisSquare =
-          chessboard[currentSquare.highestLeft[0]][
-            currentSquare.highestLeft[1]
-          ];
-        queue.unshift(thisSquare);
-      }
-      if (currentSquare.highestRight) {
-        const thisSquare =
-          chessboard[currentSquare.highestRight[0]][
-            currentSquare.highestRight[1]
-          ];
-        queue.unshift(thisSquare);
-      }
-      if (currentSquare.highLeft) {
-        const thisSquare =
-          chessboard[currentSquare.highLeft[0]][currentSquare.highLeft[1]];
-        queue.unshift(thisSquare);
-      }
-      if (currentSquare.highRight) {
-        const thisSquare =
-          chessboard[currentSquare.highRight[0]][currentSquare.highRight[1]];
-        queue.unshift(thisSquare);
-      }
-      if (currentSquare.lowLeft) {
-        const thisSquare =
-          chessboard[currentSquare.lowLeft[0]][currentSquare.lowLeft[1]];
-        queue.unshift(thisSquare);
-      }
-      if (currentSquare.lowRight) {
-        const thisSquare =
-          chessboard[currentSquare.lowRight[0]][currentSquare.lowRight[1]];
-        queue.unshift(thisSquare);
-      }
-      if (currentSquare.lowestLeft) {
-        const thisSquare =
-          chessboard[currentSquare.lowestLeft[0]][currentSquare.lowestLeft[1]];
-        queue.unshift(thisSquare);
-      }
-      if (currentSquare.lowestRight) {
-        const thisSquare =
-          chessboard[currentSquare.lowestRight[0]][
-            currentSquare.lowestRight[1]
-          ];
-        queue.unshift(thisSquare);
+  while (queue.length > 0) {
+    const currentSquare = queue.pop(); // Pop the last square from the queue
+    path.push(currentSquare);
+
+    if (currentSquare.coord === endSquare.coord) {
+      return path;
+    }
+
+    if (!visited.has(currentSquare)) {
+      visited.add(currentSquare);
+
+      // Generate possible next moves
+      const nextMoves = [
+        currentSquare.highLeft,
+        currentSquare.highRight,
+        currentSquare.lowLeft,
+        currentSquare.lowRight,
+        currentSquare.highestLeft,
+        currentSquare.highestRight,
+        currentSquare.lowestLeft,
+        currentSquare.lowestRight,
+      ];
+
+      for (const move of nextMoves) {
+        if (move && !visited.has(chessboard[move[0]][move[1]])) {
+          // Check if the square of the possible move has been visited
+          queue.unshift(chessboard[move[0]][move[1]]); // Push new squares to the front of the queue
+        }
       }
     }
-    visited.add(currentSquare);
-    queue.pop();
   }
-  return path;
+
+  return null;
 }
 
 console.log(knightMoves(chessboard[0][0], chessboard[2][4]));
