@@ -77,71 +77,64 @@ for (let i = 0; i < 8; i++) {
 function knightMoves(startingSquare, endSquare) {
   const queue = []; // Using array as a queue is much slower. Queues have a O(1) time complexity whereas arrays have a O(n) time complexity
   const path = [];
+  const visited = new Set();
   queue.unshift(startingSquare);
   while (queue.length > 0) {
-    if (path.includes(queue[queue.length - 1]) === false) {
-      path.push(queue[queue.length - 1]);
+    const currentSquare = queue[queue.length - 1];
+    if (!visited.has(currentSquare)) {
+      path.push(currentSquare);
 
-      if (queue[queue.length - 1].coord === endSquare.coord) {
+      if (currentSquare.coord === endSquare.coord) {
         return path;
       }
-      if (queue[queue.length - 1].highestLeft) {
+      if (currentSquare.highestLeft) {
         const thisSquare =
-          chessboard[queue[queue.length - 1].highestLeft[0]][
-            queue[queue.length - 1].highestLeft[1]
+          chessboard[currentSquare.highestLeft[0]][
+            currentSquare.highestLeft[1]
           ];
         queue.unshift(thisSquare);
       }
-      if (queue[queue.length - 1].highestRight) {
+      if (currentSquare.highestRight) {
         const thisSquare =
-          chessboard[queue[queue.length - 1].highestRight[0]][
-            queue[queue.length - 1].highestRight[1]
+          chessboard[currentSquare.highestRight[0]][
+            currentSquare.highestRight[1]
           ];
         queue.unshift(thisSquare);
       }
-      if (queue[queue.length - 1].highLeft) {
+      if (currentSquare.highLeft) {
         const thisSquare =
-          chessboard[queue[queue.length - 1].highLeft[0]][
-            queue[queue.length - 1].highLeft[1]
-          ];
+          chessboard[currentSquare.highLeft[0]][currentSquare.highLeft[1]];
         queue.unshift(thisSquare);
       }
-      if (queue[queue.length - 1].highRight) {
+      if (currentSquare.highRight) {
         const thisSquare =
-          chessboard[queue[queue.length - 1].highRight[0]][
-            queue[queue.length - 1].highRight[1]
-          ];
+          chessboard[currentSquare.highRight[0]][currentSquare.highRight[1]];
         queue.unshift(thisSquare);
       }
-      if (queue[queue.length - 1].lowLeft) {
+      if (currentSquare.lowLeft) {
         const thisSquare =
-          chessboard[queue[queue.length - 1].lowLeft[0]][
-            queue[queue.length - 1].lowLeft[1]
-          ];
+          chessboard[currentSquare.lowLeft[0]][currentSquare.lowLeft[1]];
         queue.unshift(thisSquare);
       }
-      if (queue[queue.length - 1].lowRight) {
+      if (currentSquare.lowRight) {
         const thisSquare =
-          chessboard[queue[queue.length - 1].lowRight[0]][
-            queue[queue.length - 1].lowRight[1]
-          ];
+          chessboard[currentSquare.lowRight[0]][currentSquare.lowRight[1]];
         queue.unshift(thisSquare);
       }
-      if (queue[queue.length - 1].lowestLeft) {
+      if (currentSquare.lowestLeft) {
         const thisSquare =
-          chessboard[queue[queue.length - 1].lowestLeft[0]][
-            queue[queue.length - 1].lowestLeft[1]
-          ];
+          chessboard[currentSquare.lowestLeft[0]][currentSquare.lowestLeft[1]];
         queue.unshift(thisSquare);
       }
-      if (queue[queue.length - 1].lowestRight) {
+      if (currentSquare.lowestRight) {
         const thisSquare =
-          chessboard[queue[queue.length - 1].lowestRight[0]][
-            queue[queue.length - 1].lowestRight[1]
+          chessboard[currentSquare.lowestRight[0]][
+            currentSquare.lowestRight[1]
           ];
         queue.unshift(thisSquare);
       }
     }
+    visited.add(currentSquare);
     queue.pop();
   }
   return path;
