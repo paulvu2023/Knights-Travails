@@ -23,7 +23,7 @@ class Square {
     lowRight = [coord[0] + 1, coord[1] + 2],
     lowestRight = [coord[0] + 2, coord[1] + 1]
   ) {
-    this.coord = coord;
+    this.coord = coord; // Calculate possible squares the knight can move from current position
     if (coord[0] >= 2 && coord[1] >= 1) {
       this.highestLeft = highestLeft;
     } else {
@@ -68,6 +68,7 @@ class Square {
 }
 
 for (let i = 0; i < 8; i++) {
+  // Populate chessboard (2d Array) with Square objects
   for (let j = 0; j < 8; j++) {
     const newSquare = new Square([i, j]);
     chessboard[i][j] = newSquare;
